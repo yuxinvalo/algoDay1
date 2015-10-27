@@ -63,100 +63,51 @@ return -1;
 }
 
 //----------------print_int_array----------------------------------------
-#if 0
+
 void print_int_array(FILE* out, const int* tab, unsigned count)
 {
-int column = 0;
-int width_max = ints_width(tab, count);
-
-  for (unsigned l = 0; l < int_width(count - 1) - 1; l++)
-  {
-    fprintf(stdout, " ");
-		column ++;
- 	}
-	//print [0]
-	fprintf(stdout, "%s%i%s", "[", 0, "]");
-	column += 3;
-//-----------------problem-----------------------
-
-   for (unsigned i = 0; i < count; ++i)
-    {
-			int width_nb = int_width(tab[i]);
-			int space = width_max - width_nb;
-			//printf("%i\n", width_nb);
- 
-			if (width_max + column > MAX_COLUMN)
-			{
-				//printf("%i\n", width_nb);
-				fprintf(stdout, "\n");
-				column = 0;
-				for (unsigned l = 0; l < int_width(count - 1) - int_width(i); l++)
-				{
-					fprintf(stdout, " ");
-					column ++;
-				}	
-				fprintf(stdout, "%s%i%s", "[", i, "]");
-				column += 3;
-			} 
-
-			for(int j = 0; j < space; j++)
-			{
-				fprintf(stdout, " ");
-			}
-			fprintf(stdout, " ");
-			fprintf(stdout, "%i", tab[i]);
-			column += width_max + 1;
-    }
-	fprintf(stdout, "\n");
-}
-#endif
-void print_int_array(FILE* out, const int* tab, unsigned count)
-{
-int column = 0;
+//int column = 0;
 int max_size = ints_width(tab, count);
-printf("maxsize is %i\n", max_size);
+//printf("maxsize is %i\n", max_size);
 
-  for (int i = 0; i < int_width(count); i++)
+  for (int i = 0; i < int_width(count - 1) - 1; i++)
   {
     fprintf(stdout, " ");
-    column++;
+    //column++;
   }
   fprintf(stdout, "[0]");
-  column = column + 3;
+ // column = column + 3;
 
 int j;
   for(int i = 0; i < count; i++)
   {
     //换行条件： 当x <= 80/最大size+1 - [x]占用格数
-    for (int x = 1; x <= (80 / (max_size + 1)); x++)
+    for (int x = 1; x <= (MAX_COLUMN / (max_size + 1)); x++)
     {
-      if ((80 / (max_size + 1) - 1) * x == i)
+      if ((MAX_COLUMN / (max_size + 1) - 1) * x == i)
       {
- column = 0;
+ 				//column = 0;
         printf("\n");
-        for(j = 0; j < int_width(count) - int_width(j); j++)
+        for(j = 0; j < int_width(count - 1)- 1 - int_width(j); j++)
         {
             fprintf(stdout, " ");
-            column++;
+           // column++;
         }
         fprintf(stdout, "[%i]", i);
-        column = column + 3;
+        //column = column + 3;
       }
-
   }
       int space = max_size - int_width(tab[i]) + 1;
       for (int s = 0; s < space; s++)
       {
         fprintf(stdout, " ");
-        column ++;
+        //column ++;
       }
       fprintf(stdout, "%i", tab[i]);
-      column = column + max_size;
+      //column = column + max_size;
   }
 printf("\n");
 }
-
-//---------------------------------------------------------------------------
 
 void insert_sort(int* tab, unsigned count)
 {
