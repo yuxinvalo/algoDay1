@@ -80,7 +80,7 @@ int b[] = {
 };
 puts("-- a[]");
 print_int_array(stdout, a, sizeof(a)/sizeof(*a));
-
+#if 1
 puts("\n-- b[]");
 print_int_array(stdout, b, sizeof(b)/sizeof(*b));
 puts("\n-- b[] after b[8] = 123456");
@@ -90,5 +90,6 @@ puts("\n-- a[0..9]");
 print_int_array(stdout, a, 10);
 puts("\n-- a[0..10]");
 print_int_array(stdout, a, 11);
-return 0;
+#endif
+return 0; 
 }
